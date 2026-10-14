@@ -1,0 +1,13 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+logs/
+*.log
+dashboard/frontend/node_modules/
+data/processed/**/*.csv
+data/processed/*.csv
+.git/
+.idea/
+.vscode/
