@@ -1,0 +1,27 @@
+{
+  "inputs": [
+    "elapsed_seconds",
+    "delta_time",
+    "x",
+    "y",
+    "z",
+    "vx",
+    "vy",
+    "vz",
+    "radius",
+    "velocity_magnitude",
+    "orbital_energy",
+    "angular_momentum"
+  ],
+  "targets": [
+    "delta_x",
+    "delta_y",
+    "delta_z",
+    "delta_vx",
+    "delta_vy",
+    "delta_vz",
+    "ax_res",
+    "ay_res",
+    "az_res"
+  ]
+}

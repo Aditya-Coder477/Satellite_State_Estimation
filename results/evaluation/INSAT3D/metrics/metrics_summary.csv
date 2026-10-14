@@ -1,0 +1,18 @@
+Metric,Value
+RMSE Position,6.9237389565
+RMSE Velocity,0.0003865429
+MAE Position,4.9482803345
+MAE Velocity,0.0002650805
+R² Position,0.9957635999
+R² Velocity,0.9975168109
+Mean Position Error,11.2210283279
+Mean Velocity Error,0.0005975970
+Mean Physics Residual,0.0000005608
+Mean Trajectory Error,11.2210283279
+Mean Orbit Drift,5323.9210022108
+Mean Δa,8495.4145581604
+Mean Δe,0.2993610178
+Mean Δi,0.4539407583
+Mean ΔRAAN,11.4341512379
+Mean Δω,96.3400724372
+Mean Δν,96.8351522593

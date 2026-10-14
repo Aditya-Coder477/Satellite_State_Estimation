@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ──────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #0a0e1a;
+  color: #e2e8f0;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ── Scrollbar (dark) ──────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0d1220; }
+::-webkit-scrollbar-thumb { background: #1e2d4a; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #2a3f6a; }
+
+/* ── Leaflet overrides ─────────────────────────────────── */
+.leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  background: #0a0e1a !important;
+  border-radius: 0.375rem;
+  z-index: 1;
+  font-family: 'Inter', system-ui, sans-serif !important;
+}
+.leaflet-container .leaflet-tile-pane img {
+  max-width: none !important;
+}
+.osm-dark-filter {
+  filter: brightness(0.65) saturate(0.6) contrast(1.1);
+}
+.leaflet-popup-content-wrapper {
+  background: #111827 !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #1e2d4a;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+  padding: 0;
+}
+.leaflet-popup-content {
+  margin: 10px 14px !important;
+  line-height: 1.4 !important;
+  font-size: 11px !important;
+}
+.leaflet-popup-tip {
+  background: #111827 !important;
+  border: 1px solid #1e2d4a;
+}
+.leaflet-popup-close-button {
+  color: #94a3b8 !important;
+  padding: 6px !important;
+}
+.leaflet-popup-close-button:hover {
+  color: #00d4ff !important;
+}
+.leaflet-bar {
+  border: 1px solid #1e2d4a !important;
+  box-shadow: none !important;
+  border-radius: 0.375rem !important;
+  overflow: hidden;
+}
+.leaflet-bar a {
+  background-color: #111827 !important;
+  color: #94a3b8 !important;
+  border-bottom: 1px solid #1e2d4a !important;
+  width: 26px !important;
+  height: 26px !important;
+  line-height: 26px !important;
+}
+.leaflet-bar a:hover {
+  background-color: #1e2d4a !important;
+  color: #00d4ff !important;
+}
+
+/* ── Panel card ────────────────────────────────────────── */
+.panel {
+  @apply bg-panel-bg border border-panel-border rounded-lg;
+}
+
+/* ── Metric value ──────────────────────────────────────── */
+.metric-value {
+  @apply font-mono text-accent-cyan;
+}
+
+/* ── Timeline range input ──────────────────────────────── */
+input[type="range"] {
+  -webkit-appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  background: #1e2d4a;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #00d4ff;
+  cursor: pointer;
+}
+
+/* ── Plotly overrides (dark) ──────────────────────────── */
+.js-plotly-plot .plotly .modebar { display: none; }
+.js-plotly-plot .plotly .gl-container { background: transparent !important; }

@@ -1,0 +1,70 @@
+{
+  "network_name": "INSAT3D_Observation_Network",
+  "description": "Ground station network optimized for INSAT-3D (82°E GEO satellite)",
+  "coordinate_frame": "WGS84",
+  "minimum_elevation_deg": 10.0,
+
+  "stations": [
+
+    {
+      "id": 1,
+      "name": "Bengaluru",
+      "country": "India",
+      "state": "Karnataka",
+      "latitude_deg": 12.9716,
+      "longitude_deg": 77.5946,
+      "height_m": 920,
+      "timezone": "Asia/Kolkata",
+      "station_code": "BLR"
+    },
+
+    {
+      "id": 2,
+      "name": "Hyderabad",
+      "country": "India",
+      "state": "Telangana",
+      "latitude_deg": 17.3850,
+      "longitude_deg": 78.4867,
+      "height_m": 542,
+      "timezone": "Asia/Kolkata",
+      "station_code": "HYD"
+    },
+
+    {
+      "id": 3,
+      "name": "Sriharikota",
+      "country": "India",
+      "state": "Andhra Pradesh",
+      "latitude_deg": 13.7199,
+      "longitude_deg": 80.2304,
+      "height_m": 5,
+      "timezone": "Asia/Kolkata",
+      "station_code": "SHAR"
+    },
+
+    {
+      "id": 4,
+      "name": "Lucknow",
+      "country": "India",
+      "state": "Uttar Pradesh",
+      "latitude_deg": 26.8467,
+      "longitude_deg": 80.9462,
+      "height_m": 123,
+      "timezone": "Asia/Kolkata",
+      "station_code": "LKO"
+    },
+
+    {
+      "id": 5,
+      "name": "Port Blair",
+      "country": "India",
+      "state": "Andaman and Nicobar Islands",
+      "latitude_deg": 11.6234,
+      "longitude_deg": 92.7265,
+      "height_m": 89,
+      "timezone": "Asia/Kolkata",
+      "station_code": "PBL"
+    }
+
+  ]
+}

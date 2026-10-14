@@ -1,0 +1,51 @@
+{
+  "GOES16": {
+    "norad_id": 41866,
+    "object_id": "2016-071A",
+    "operator": "NOAA",
+    "orbit_type": "GEO",
+    "sub_satellite_longitude_deg": -75.2,
+    "mean_motion": 1.00272055,
+    "eccentricity": 0.000056,
+    "inclination_deg": 0.3642,
+    "source": "CelesTrak OMM",
+    "default_ground_station_network": "GOES16_Observation_Network",
+    "raw_file": "GOES16.txt"
+  },
+
+  "GOES18": {
+    "norad_id": 51850,
+    "object_id": "2022-021A",
+    "operator": "NOAA",
+    "orbit_type": "GEO",
+    "mean_motion": 1.00273030,
+    "eccentricity": 0.00006333,
+    "inclination_deg": 0.0070,
+    "source": "CelesTrak OMM",
+    "raw_file": "GOES18.txt"
+  },
+
+  "GOES19": {
+    "norad_id": 60133,
+    "object_id": "2024-119A",
+    "operator": "NOAA",
+    "orbit_type": "GEO",
+    "mean_motion": 1.00271463,
+    "eccentricity": 0.0000516,
+    "inclination_deg": 0.0451,
+    "source": "CelesTrak OMM",
+    "raw_file": "GOES19.txt"
+  },
+
+  "INSAT3D": {
+    "norad_id": 39216,
+    "object_id": "2013-038B",
+    "operator": "ISRO",
+    "orbit_type": "GEO",
+    "mean_motion": 1.00272220,
+    "eccentricity": 0.0001129,
+    "inclination_deg": 1.9489,
+    "source": "CelesTrak OMM",
+    "raw_file": "INSAT3D.txt"
+  }
+}

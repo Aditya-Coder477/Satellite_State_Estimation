@@ -1,0 +1,68 @@
+{
+    "satellite": "INSAT3D",
+    "gravity_model": "two_body",
+    "time_span_hours": 167.98333333333332,
+    "steps": 10080,
+    "metrics": {
+        "euler": {
+            "execution_time_seconds": 0.47370680002495646,
+            "final_position_error_km": 84103.78002177119,
+            "max_position_error_km": 92225.80145327028,
+            "mean_position_error_km": 48210.28811347596,
+            "final_velocity_error_kms": 4.989554364279274,
+            "max_velocity_error_kms": 5.905601100330856,
+            "mean_velocity_error_kms": 3.0685869432340773,
+            "final_energy_drift_km2_s2": 1.0694739942216662,
+            "max_energy_drift_km2_s2": 1.0694739942216662,
+            "mean_energy_drift_km2_s2": 0.6254346669184367,
+            "final_momentum_drift_km2_s": 17733.90300175683,
+            "max_momentum_drift_km2_s": 17733.90300175683,
+            "mean_momentum_drift_km2_s": 9807.184949119475
+        },
+        "rk4": {
+            "execution_time_seconds": 1.599942300003022,
+            "final_position_error_km": 61.99686011256721,
+            "max_position_error_km": 119.64896001989403,
+            "mean_position_error_km": 47.995616075264934,
+            "final_velocity_error_kms": 0.005651790052434103,
+            "max_velocity_error_kms": 0.005815153561753956,
+            "mean_velocity_error_kms": 0.0033109807929500223,
+            "final_energy_drift_km2_s2": 9.325873406851315e-12,
+            "max_energy_drift_km2_s2": 9.325873406851315e-12,
+            "mean_energy_drift_km2_s2": 4.684153858442691e-12,
+            "final_momentum_drift_km2_s": 1.2789678294211626e-07,
+            "max_momentum_drift_km2_s": 1.2789678294211626e-07,
+            "mean_momentum_drift_km2_s": 6.414873871743487e-08
+        },
+        "leapfrog": {
+            "execution_time_seconds": 0.48063780018128455,
+            "final_position_error_km": 71.2544780745399,
+            "max_position_error_km": 131.02623436754388,
+            "mean_position_error_km": 53.63062472306471,
+            "final_velocity_error_kms": 0.006501103583398591,
+            "max_velocity_error_kms": 0.0066131747444781504,
+            "mean_velocity_error_kms": 0.0037374714201085977,
+            "final_energy_drift_km2_s2": 2.05719885570943e-10,
+            "max_energy_drift_km2_s2": 5.812145431605131e-09,
+            "mean_energy_drift_km2_s2": 2.749962342320773e-09,
+            "final_momentum_drift_km2_s": 5.529727786779404e-10,
+            "max_momentum_drift_km2_s": 7.8580342233181e-10,
+            "mean_momentum_drift_km2_s": 2.0045118862836962e-10
+        },
+        "velocity_verlet": {
+            "execution_time_seconds": 0.7303832999896258,
+            "final_position_error_km": 71.23679079841301,
+            "max_position_error_km": 131.20251942191786,
+            "mean_position_error_km": 53.65671060525232,
+            "final_velocity_error_kms": 0.006500391403356207,
+            "max_velocity_error_kms": 0.006619544830361415,
+            "mean_velocity_error_kms": 0.0037382838601110373,
+            "final_energy_drift_km2_s2": 4.112008511469867e-10,
+            "max_energy_drift_km2_s2": 1.1817815170900303e-08,
+            "mean_energy_drift_km2_s2": 5.5971576599283646e-09,
+            "final_momentum_drift_km2_s": 1.1204974725842476e-09,
+            "max_momentum_drift_km2_s": 1.5133991837501526e-09,
+            "mean_momentum_drift_km2_s": 5.910849376093774e-10
+        }
+    }
+}

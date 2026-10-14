@@ -1,0 +1,26 @@
+{
+  "primary_satellite": "GOES16",
+
+  "additional_satellites": [
+
+    "GOES18",
+
+    "GOES19",
+
+    "INSAT3D"
+
+  ],
+
+  "future_satellites": [
+
+    "INSAT3DR",
+
+    "GSAT30"
+
+  ],
+
+  "training_strategy": "Single Satellite",
+
+  "validation_strategy": "Cross Satellite"
+
+}

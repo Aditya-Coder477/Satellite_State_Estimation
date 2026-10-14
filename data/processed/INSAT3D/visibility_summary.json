@@ -1,0 +1,7 @@
+{
+  "network_name": "ground_stations.json",
+  "simulation_samples": 50405,
+  "total_visible_samples": 50405,
+  "total_invisible_samples": 0,
+  "average_network_visibility_percentage": 100.0
+}

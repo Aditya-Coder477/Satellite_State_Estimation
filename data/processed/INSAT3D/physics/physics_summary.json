@@ -1,0 +1,10 @@
+{
+    "satellite": "INSAT3D",
+    "integrator": "velocity_verlet",
+    "gravity_model": "two_body",
+    "total_samples": 10080,
+    "mean_orbital_radius_km": 42165.32367433649,
+    "mean_velocity_kms": 3.0747061480012716,
+    "mean_residual_acc_magnitude_kms2": 5.103909939486278e-07,
+    "status": "VALIDATED"
+}

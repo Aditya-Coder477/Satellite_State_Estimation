@@ -1,0 +1,25 @@
+{
+  "satellite": {
+    "name": "INSAT-3D",
+    "norad_id": 39216,
+    "operator": "ISRO",
+    "country": "India",
+    "mission_type": "Meteorological",
+    "orbit": "Geostationary",
+
+    "nominal_longitude_deg": 82.0,
+
+    "coordinate_frame": "TEME",
+
+    "ephemeris_source": "CelesTrak OMM",
+
+    "state_representation": [
+      "x",
+      "y",
+      "z",
+      "vx",
+      "vy",
+      "vz"
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "phase": "Phase 6 \u2014 Optical Observation Generation",
+  "satellite": "INSAT-3D",
+  "scenarios_generated": [
+    "Scenario A (Ideal)",
+    "Scenario B (Low Noise)",
+    "Scenario C (High Noise)",
+    "Scenario D (Missing Obs)",
+    "Scenario E (Variable Sampling)",
+    "Scenario F (Station Outage)"
+  ],
+  "clean_observation_dataset": {
+    "file": "observations.csv",
+    "samples": 50405,
+    "columns": [
+      "utc_time",
+      "elapsed_seconds",
+      "station_id",
+      "station_name",
+      "ra_deg",
+      "dec_deg",
+      "azimuth_deg",
+      "elevation_deg",
+      "range_km",
+      "range_rate_km_s",
+      "quality_score",
+      "scenario"
+    ]
+  },
+  "noisy_observation_dataset": {
+    "file": "noisy_observations.csv",
+    "samples": 256947,
+    "columns": [
+      "utc_time",
+      "elapsed_seconds",
+      "station_id",
+      "station_name",
+      "ra_true_deg",
+      "dec_true_deg",
+      "ra_observed_deg",
+      "dec_observed_deg",
+      "noise_ra_deg",
+      "noise_dec_deg",
+      "quality_score",
+      "scenario"
+    ]
+  },
+  "overall_status": "SUCCESS"
+}

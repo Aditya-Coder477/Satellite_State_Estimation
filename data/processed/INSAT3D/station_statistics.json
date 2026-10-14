@@ -1,0 +1,82 @@
+{
+  "Bengaluru": {
+    "Station ID": 1,
+    "Coordinates": {
+      "Latitude": 12.9716,
+      "Longitude": 77.5946,
+      "Height": 920.0
+    },
+    "Visible Samples": 10081,
+    "Invisible Samples": 0,
+    "Maximum Elevation": 29.952098751493008,
+    "Average Elevation": 29.3537212176311,
+    "Maximum Range": 38764.61691513452,
+    "Minimum Range": 38578.65285196429,
+    "Average Range": 38669.565158559686,
+    "Average Visibility Percentage": 100.0
+  },
+  "Hyderabad": {
+    "Station ID": 2,
+    "Coordinates": {
+      "Latitude": 17.385,
+      "Longitude": 78.4867,
+      "Height": 542.0
+    },
+    "Visible Samples": 10081,
+    "Invisible Samples": 0,
+    "Maximum Elevation": 30.08839486165504,
+    "Average Elevation": 29.293498291068534,
+    "Maximum Range": 38787.67208652923,
+    "Minimum Range": 38566.21115041964,
+    "Average Range": 38674.775340679735,
+    "Average Visibility Percentage": 100.0
+  },
+  "Sriharikota": {
+    "Station ID": 3,
+    "Coordinates": {
+      "Latitude": 13.7199,
+      "Longitude": 80.2304,
+      "Height": 5.0
+    },
+    "Visible Samples": 10081,
+    "Invisible Samples": 0,
+    "Maximum Elevation": 32.591127940546485,
+    "Average Elevation": 31.93506493407274,
+    "Maximum Range": 38540.65304799741,
+    "Minimum Range": 38347.88970672733,
+    "Average Range": 38442.04471199143,
+    "Average Visibility Percentage": 100.0
+  },
+  "Lucknow": {
+    "Station ID": 4,
+    "Coordinates": {
+      "Latitude": 26.8467,
+      "Longitude": 80.9462,
+      "Height": 123.0
+    },
+    "Visible Samples": 10081,
+    "Invisible Samples": 0,
+    "Maximum Elevation": 29.73582939376025,
+    "Average Elevation": 28.545968967620823,
+    "Maximum Range": 38890.744758015375,
+    "Minimum Range": 38596.51129298976,
+    "Average Range": 38741.25939336211,
+    "Average Visibility Percentage": 100.0
+  },
+  "Port Blair": {
+    "Station ID": 5,
+    "Coordinates": {
+      "Latitude": 11.6234,
+      "Longitude": 92.7265,
+      "Height": 89.0
+    },
+    "Visible Samples": 10081,
+    "Invisible Samples": 0,
+    "Maximum Elevation": 46.28076983796067,
+    "Average Elevation": 45.57032110693909,
+    "Maximum Range": 37465.35892752116,
+    "Minimum Range": 37286.524535965786,
+    "Average Range": 37372.98883068027,
+    "Average Visibility Percentage": 100.0
+  }
+}

@@ -1,0 +1,63 @@
+{
+    "satellite_metadata": {
+        "satellite_name": "GOES 16",
+        "norad_id": 41866
+    },
+    "temporal_range": {
+        "start_utc": "2026-06-26T05:31:09.471072",
+        "end_utc": "2026-07-03T05:31:09.471072",
+        "duration_seconds": 604800.0,
+        "min_elapsed_seconds": 0.0,
+        "max_elapsed_seconds": 604800.0
+    },
+    "ground_station_network": {
+        "number_of_stations": 5,
+        "stations": [
+            "Cape Canaveral",
+            "Houston",
+            "San Juan",
+            "Santiago",
+            "Brasilia"
+        ]
+    },
+    "data_fractions": {
+        "total_observations": 50405,
+        "visible_observations": 11512,
+        "visible_pct": 22.83900406705684,
+        "hidden_observations": 38893,
+        "hidden_pct": 77.16099593294317,
+        "missing_or_corrupted_observations": 38893,
+        "missing_pct": 77.16099593294315
+    },
+    "dataset_splits": {
+        "train_samples": 35283,
+        "val_samples": 7561,
+        "test_samples": 7561,
+        "collocation_samples": 504050
+    },
+    "noise_configuration": {
+        "noise_model": "gaussian",
+        "actual_errors": {
+            "ra_error_deg": {
+                "mean": -1.8029308068950138e-05,
+                "std": 0.005011974766104586,
+                "min": -0.021945572924323642,
+                "max": 0.025036176159574097
+            },
+            "dec_error_deg": {
+                "mean": -2.431621008444368e-05,
+                "std": 0.005023588153444387,
+                "min": -0.021285046441239963,
+                "max": 0.022533729064435182
+            }
+        }
+    },
+    "validation": {
+        "is_valid": false,
+        "errors_count": 2,
+        "errors": [
+            "Normalization inconsistency: column 'elapsed_seconds' has normalized mean = 211668.001020 (expected ~0.0)",
+            "Normalization inconsistency: column 'elapsed_seconds' has normalized std = 122225.629914 (expected ~1.0)"
+        ]
+    }
+}

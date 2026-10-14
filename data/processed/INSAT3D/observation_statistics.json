@@ -1,0 +1,26 @@
+{
+  "Total observations": 256947,
+  "Visible observations": 302430,
+  "Missing observations": 35365,
+  "Average noise": 0.010822386343381002,
+  "Maximum noise": 0.09314132307137712,
+  "Observation density": {
+    "total_observations_per_day": 36706.71428571428,
+    "total_observation_count": 256947
+  },
+  "Per-station observation counts": {
+    "Bengaluru": 50280,
+    "Hyderabad": 51669,
+    "Lucknow": 51603,
+    "Port Blair": 51711,
+    "Sriharikota": 51684
+  },
+  "Per-scenario observation counts": {
+    "Scenario A (Ideal)": 50405,
+    "Scenario B (Low Noise)": 50405,
+    "Scenario C (High Noise)": 50405,
+    "Scenario D (Missing Obs)": 40262,
+    "Scenario E (Variable Sampling)": 16506,
+    "Scenario F (Station Outage)": 48964
+  }
+}

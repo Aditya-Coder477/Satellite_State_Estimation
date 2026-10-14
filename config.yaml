@@ -1,0 +1,717 @@
+# =============================================================================
+# Satellite PINN State Estimation — Master Configuration
+# =============================================================================
+# All paths are relative to the project root unless noted.
+# Satellites are identified by their canonical key (e.g. GOES16, GOES18).
+# The propagation pipeline reads this file exclusively; nothing is hardcoded.
+# =============================================================================
+
+project:
+  name: "Satellite PINN State Estimation"
+  version: "0.1.0"
+  root: "."                          # resolved at runtime to absolute path
+
+# ---------------------------------------------------------------------------
+# Paths
+# ---------------------------------------------------------------------------
+paths:
+  data:
+    raw:
+      omm: "data/raw/omm"
+      tle: "data/raw/tle"
+    processed:
+      base: "data/processed"          # satellite sub-dir appended at runtime
+    metadata: "data/metadata"
+
+  logs:
+    propagation: "logs/propagation"
+    coordinate_transforms: "logs/coordinate_transforms"
+    observations: "logs/observations"
+    perturbations: "logs/perturbations"
+
+  results:
+    propagation: "results/propagation"
+    coordinate_transforms: "results/coordinate_transforms"
+    observations: "results/observations"
+    perturbations: "results/perturbations"
+
+  figures: "figures"
+  reports: "reports"
+
+# ---------------------------------------------------------------------------
+# Propagation settings
+# ---------------------------------------------------------------------------
+propagation:
+  duration_days: 7                   # total simulation window
+  step_seconds: 60                   # output cadence (seconds)
+  expected_rows: 10081               # duration_days * 86400 / step_seconds + 1 (epoch t=0 inclusive)
+
+  # Output CSV column order
+  csv_columns:
+    - "utc_time"
+    - "elapsed_seconds"
+    - "satellite_name"
+    - "norad_id"
+    - "x_teme_km"
+    - "y_teme_km"
+    - "z_teme_km"
+    - "vx_teme_kms"
+    - "vy_teme_kms"
+    - "vz_teme_kms"
+
+  output_csv: "truth_states.csv"     # written inside data/processed/<SAT>/
+
+# ---------------------------------------------------------------------------
+# Satellite registry
+# Each entry maps a canonical key → OMM filename and processed output dir.
+# ---------------------------------------------------------------------------
+satellites:
+  GOES16:
+    omm_file: "GOES16.txt"
+    processed_dir: "GOES16"
+  GOES18:
+    omm_file: "GOES18.txt"
+    processed_dir: "GOES18"
+  GOES19:
+    omm_file: "GOES19.txt"
+    processed_dir: "GOES19"
+  INSAT3D:
+    omm_file: "INSAT3D.txt"
+    processed_dir: "INSAT3D"
+
+# ---------------------------------------------------------------------------
+# Logging
+# ---------------------------------------------------------------------------
+logging:
+  level: "INFO"                      # DEBUG | INFO | WARNING | ERROR
+  format: "%(asctime)s | %(levelname)-8s | %(name)s | %(message)s"
+  datefmt: "%Y-%m-%dT%H:%M:%S"
+  console: true                      # mirror logs to stderr
+
+# ---------------------------------------------------------------------------
+# Visualisation
+# ---------------------------------------------------------------------------
+visualization:
+  dpi: 150
+  style: "dark_background"
+  figsize:
+    trajectory_3d: [10, 8]
+    position_xyz:  [14, 8]
+    velocity_xyz:  [14, 8]
+  colors:
+    trajectory: "#00D4FF"
+    x: "#FF6B6B"
+    y: "#4ECDC4"
+    z: "#FFE66D"
+    earth: "#1A3A5C"
+
+# ---------------------------------------------------------------------------
+# Coordinate transformations settings
+# ---------------------------------------------------------------------------
+coordinate_transforms:
+  use_astropy: true
+  save_intermediate_frames: true
+  output_frame: "ITRS"
+  output_csv: "truth_states_transformed.csv"
+  
+  # Validation parameters
+  validation:
+    norm_tolerance_m: 10.0            # acceptable deviation in position norm between TEME & GCRS (m)
+    max_position_jump_kms: 5.0        # max expected position change per second (km/s)
+    max_velocity_jump_kms2: 0.1       # max expected velocity change per second (km/s^2)
+    position_magnitude_range_km: [35000.0, 45000.0]
+    velocity_magnitude_range_kms: [2.0, 5.0]
+
+  # Default ground stations (lat_deg, lon_deg, height_m) for testing/ENU frames
+  ground_stations:
+    station_alpha:
+      name: "Station Alpha"
+      lat_deg: 37.7749
+      lon_deg: -122.4194
+      height_m: 10.0
+
+
+# ---------------------------------------------------------------------------
+# Observation Generation settings (Phase 4 & 5)
+# ---------------------------------------------------------------------------
+observation_generation:
+  input_csv:            "truth_states_transformed.csv"
+  ground_stations_json: "data/metadata/ground_stations.json"
+
+  visibility:
+    min_elevation_deg: 10.0
+
+  output:
+    observations_csv:       "observations.csv"
+    noisy_observations_csv: "noisy_observations.csv"
+    summary_json:           "observation_summary.json"
+
+  # Noise model (strategy pattern — switch model name to change implementation)
+  noise:
+    model:        "gaussian"   # gaussian | uniform | laplace
+    ra_std_deg:   0.005        # ~18 arcseconds
+    dec_std_deg:  0.005
+    seed:         42
+
+  # Observation scenarios — loaded by name at runtime via --scenario flag
+  scenarios:
+    perfect:
+      description: "No noise, no missing observations"
+      noise_enabled: false
+      missing_fraction: 0.0
+      sampling_interval_seconds: 60
+
+    gaussian_noise:
+      description: "Gaussian RA/Dec noise at 0.005 deg std"
+      noise_enabled: true
+      noise_model: "gaussian"
+      missing_fraction: 0.0
+      sampling_interval_seconds: 60
+
+    missing_5pct:
+      description: "Gaussian noise + 5% randomly missing observations"
+      noise_enabled: true
+      noise_model: "gaussian"
+      missing_fraction: 0.05
+      missing_seed: 123
+      sampling_interval_seconds: 60
+
+    weather_outage:
+      description: "Gaussian noise + random cloud/weather outage windows"
+      noise_enabled: true
+      noise_model: "gaussian"
+      missing_fraction: 0.0
+      outage_enabled: true
+      outage_probability: 0.10    # probability of a 30-minute outage window
+      outage_duration_min: 30
+      outage_seed: 456
+      sampling_interval_seconds: 60
+
+    sparse_sampling:
+      description: "Gaussian noise, observations every 5 minutes"
+      noise_enabled: true
+      noise_model: "gaussian"
+      missing_fraction: 0.0
+      sampling_interval_seconds: 300
+
+  # Validation thresholds
+  validation:
+    elevation_range_deg: [-90.0,  90.0]
+    azimuth_range_deg:   [  0.0, 360.0]
+    ra_range_deg:        [  0.0, 360.0]
+    dec_range_deg:       [-90.0,  90.0]
+    min_range_km:        1000.0
+    max_range_km:        100000.0
+
+
+# ---------------------------------------------------------------------------
+# Dataset Pipeline settings (Phase 6)
+# ---------------------------------------------------------------------------
+dataset:
+  input:
+    observations: "noisy_observations.csv"   # observations.csv or noisy_observations.csv
+    truth_states: "truth_states_transformed.csv"
+
+  split:
+    strategy: "temporal"    # temporal | random
+    train: 0.70
+    validation: 0.15
+    test: 0.15
+    seed: 42
+
+  normalization:
+    method: "standard"      # standard | minmax | identity
+    columns:
+      - "elapsed_seconds"
+      - "right_ascension_deg"
+      - "declination_deg"
+      - "ra_noisy_deg"
+      - "dec_noisy_deg"
+      - "range_km"
+      - "range_rate_kms"
+      - "x_gcrs_km"
+      - "y_gcrs_km"
+      - "z_gcrs_km"
+      - "vx_gcrs_kms"
+      - "vy_gcrs_kms"
+      - "vz_gcrs_kms"
+
+  collocation:
+    strategy: "uniform"     # uniform | random | lhs
+    multiplier: 10          # ratio of collocation points to observations
+    seed: 42
+
+  feature_engineering:
+    enabled: true
+    estimated_period_seconds: null  # if null, computed dynamically from orbital radius
+
+  pytorch:
+    pin_memory: true
+    num_workers: 0
+
+
+# ---------------------------------------------------------------------------
+# Physics Engine settings (Phase 7)
+# ---------------------------------------------------------------------------
+physics:
+  gravity_model: "two_body"     # two_body | j2 | j4
+
+  residual:
+    reduction: "mean"           # mean | sum
+
+  constraints:
+    radius_positive: true
+    min_radius_km: 6378.137     # Earth radius limit
+    max_velocity_kms: 12.0      # Earth escape velocity limit
+    finite_velocity: true
+    finite_acceleration: true
+
+  loss:
+    physics_weight: 1.0
+    boundary_weight: 1.0
+    initial_weight: 1.0
+    constraint_weight: 0.1
+
+
+# ---------------------------------------------------------------------------
+# Physics-Informed Neural Network settings (Phase 8)
+# ---------------------------------------------------------------------------
+pinn:
+  network:
+    input_dim: 1
+    output_dim: 6
+    hidden_layers: 8
+    neurons: 128
+    activation: "tanh"         # tanh | relu | silu | gelu | sin
+    dropout: 0.0
+    initializer: "xavier"      # xavier | kaiming | normal
+
+  optimizer:
+    name: "adam"               # adam | adamw | lbfgs | sgd
+    learning_rate: 0.001
+    weight_decay: 1.0e-5
+    # L-BFGS specific settings
+    max_iter: 20
+    history_size: 100
+
+  scheduler:
+    name: "cosine"             # cosine | step | plateau | none
+    step_size: 1000
+    gamma: 0.5
+    patience: 10
+
+  training:
+    epochs: 500
+    batch_size: 1024
+    gradient_clip: 1.0
+    mixed_precision: false
+    device: "auto"             # auto | cuda | cpu
+    pin_memory: true
+    num_workers: 0
+
+  losses:
+    observation_weight: 1.0
+    physics_weight: 10.0
+    boundary_weight: 5.0
+    initial_weight: 5.0
+    constraint_weight: 1.0
+
+  checkpoint:
+    dir: "checkpoints"
+    save_best_only: true
+
+
+# ---------------------------------------------------------------------------
+# Evaluation Framework settings (Phase 9)
+# ---------------------------------------------------------------------------
+evaluation:
+  # Window definitions (in days, measured from epoch = Day 0)
+  training_window:
+    start_day: 0
+    end_day: 5             # Model is trained on Day 0 → Day 5
+
+  prediction_window:
+    start_day: 5
+    end_day: 7             # Model must predict Day 5 → Day 7 (2-day horizon)
+
+  # Inference resolution (seconds between prediction steps)
+  prediction_step_seconds: 60
+
+  # Ground truth source file (relative to processed/<SAT>/)
+  truth_states_file: "dataset/test.csv"
+
+  # Checkpoint to load for inference
+  checkpoint: "checkpoints/best_model.pt"
+
+  # Performance grading thresholds (RMSE in km for position, km/s for velocity)
+  thresholds:
+    position_rmse_km:
+      excellent: 1.0
+      good:      5.0
+      acceptable: 20.0
+      # above acceptable → Poor
+    velocity_rmse_kms:
+      excellent: 0.001
+      good:      0.005
+      acceptable: 0.020
+    physics_residual_mean:
+      excellent: 1.0e-6
+      good:      1.0e-5
+      acceptable: 1.0e-4
+
+  # Output directories (relative to project root)
+  output:
+    metrics_dir:   "results/evaluation/metrics"
+    figures_dir:   "results/evaluation/figures"
+    reports_dir:   "results/evaluation/reports"
+    csv_outputs_dir: "CSV Outputs"           # Root-level CSV delivery folder
+
+  # Visualization settings
+  visualization:
+    dpi: 150
+    style: "dark_background"
+    figsize:
+      trajectory_3d:  [12, 10]
+      position_error: [16, 10]
+      velocity_error: [16, 10]
+      orbital_drift:  [16, 8]
+      residuals:      [14, 6]
+    colors:
+      predicted:  "#00D4FF"
+      truth:      "#FFE66D"
+      error:      "#FF6B6B"
+      residual:   "#4ECDC4"
+
+  # Report generation flags
+  report:
+    generate_markdown: true
+    generate_json: true
+    include_physics_validation: true
+    include_orbital_elements: true
+
+
+# ---------------------------------------------------------------------------
+# Phase 3 — Perturbation Simulation settings
+# ---------------------------------------------------------------------------
+perturbation:
+  enabled: true
+
+  # Toggle individual perturbation models on/off
+  models:
+    solar_radiation_pressure: true
+    maneuver: true
+    random: true
+    constant_bias: true
+
+  # Model 1 — Solar Radiation Pressure
+  srp:
+    pressure_n_pa: 4.56e-6          # Solar radiation pressure constant [N/m²]
+    reflectivity: 1.3               # C_R: 1=absorb, 1.3=partial, 2=mirror
+    area_mass_ratio: 0.02           # Satellite A/m [m²/kg]
+
+  # Model 2 — Station-Keeping Maneuver
+  maneuver:
+    enabled: true
+    start_time_seconds: 259200      # Day 3 of simulation
+    duration_seconds: 1200          # 20-minute burn
+    magnitude_km_s2: 1.0e-8         # Thrust acceleration magnitude [km/s²]
+    direction: [1.0, 0.0, 0.0]     # Unit vector in TEME frame (normalised internally)
+
+  # Model 3 — Gaussian Random Disturbance
+  random:
+    mean: 0.0                       # Zero-mean
+    std: 5.0e-10                    # Standard deviation [km/s²]
+    seed: 42                        # Reproducibility seed
+
+  # Model 4 — Constant Bias
+  bias:
+    ax: 2.0e-10                     # X-component [km/s²]
+    ay: 1.0e-10                     # Y-component [km/s²]
+    az: 0.0                         # Z-component [km/s²]
+
+  # Validation thresholds
+  validation:
+    max_position_deviation_km: 5.0
+    max_velocity_deviation_kms: 0.01
+    max_acceleration_km_s2: 1.0e-5
+
+  # Output file names (relative to data/processed/<SAT>/)
+  output:
+    disturbed_csv: "truth_states_disturbed.csv"
+    residual_csv: "residual_acceleration.csv"
+    disturbance_log_csv: "disturbance_log.csv"
+    summary_json: "perturbation_summary.json"
+    statistics_json: "disturbance_statistics.json"
+    config_used_json: "perturbation_config_used.json"
+
+
+# ---------------------------------------------------------------------------
+# Phase 4 — Coordinate Transformation settings
+# ---------------------------------------------------------------------------
+coordinate_transformation:
+  input_file: "truth_states_disturbed.csv"
+  output_file: "truth_states_transformed.csv"
+  preserve_residual_acceleration: true
+  frames:
+    input: "TEME"
+    intermediate: "GCRS"
+    output: "ITRS"
+  validation:
+    preserve_time: true
+    preserve_sample_count: true
+    preserve_residual_columns: true
+
+
+# ---------------------------------------------------------------------------
+# Phase 5 — Ground Station settings
+# ---------------------------------------------------------------------------
+ground_station:
+  input_file: "truth_states_transformed.csv"
+  station_file: "ground_stations.json"
+  output_file: "ground_station_geometry.csv"
+  minimum_elevation_deg: 10.0
+  compute:
+    range: true
+    range_rate: true
+    visibility: true
+    azimuth: true
+    elevation: true
+  validation:
+    enforce_unique_station_ids: true
+    validate_geometry: true
+    validate_visibility: true
+
+
+# ---------------------------------------------------------------------------
+# Phase 6 — Observation Generation settings
+# ---------------------------------------------------------------------------
+observation_generation:
+  input_geometry: "ground_station_geometry.csv"
+  input_states: "truth_states_transformed.csv"
+  output_clean: "observations.csv"
+  output_noisy: "noisy_observations.csv"
+
+  sensor:
+    type: "optical"
+    generate_ra_dec: true
+
+  noise:
+    gaussian:
+      enabled: true
+      ra_std_deg: 0.005
+      dec_std_deg: 0.005
+    bias:
+      enabled: false
+      ra_bias_deg: 0.0
+      dec_bias_deg: 0.0
+    random_walk:
+      enabled: false
+      std_deg: 0.0001
+
+  sampling:
+    mode: "uniform"
+    interval_seconds: 60
+    missing_fraction: 0.10
+    seed: 42
+
+  scenarios:
+    ideal: true
+    low_noise: true
+    high_noise: true
+    missing_observations: true
+    variable_sampling: true
+    station_outage: true
+    outage_station_id: 1
+    outage_start_s: 259200
+    outage_end_s: 345600
+
+  quality:
+    compute_score: true
+
+
+# ---------------------------------------------------------------------------
+# Phase 7 — Dataset Engineering settings
+# ---------------------------------------------------------------------------
+dataset:
+  input_states: "truth_states_transformed.csv"
+  input_observations: "noisy_observations.csv"
+  output_dir: "dataset"
+
+  transition:
+    enabled: true
+    delta_time_seconds: 60
+
+  split:
+    train: 0.70
+    validation: 0.15
+    test: 0.15
+    chronological: true
+
+  normalization:
+    method: "standard"        # options: none | minmax | standard | robust
+
+  feature_engineering:
+    radius: true
+    velocity_magnitude: true
+    orbital_energy: true
+    angular_momentum: true
+
+  collocation:
+    enabled: true
+    sampling: "uniform"       # options: uniform | random | latin_hypercube
+    number_of_points: 10000
+
+  raw_dataset: true           # also save un-normalised transition_dataset_raw.csv
+
+
+# ---------------------------------------------------------------------------
+# Phase 8 — Physics Engine settings
+# ---------------------------------------------------------------------------
+physics:
+  gravity_model: "two_body"
+  integrator:
+    type: "velocity_verlet"
+    supported:
+      - "euler"
+      - "rk4"
+      - "leapfrog"
+      - "velocity_verlet"
+
+  compute:
+    residual_dynamics: true
+    orbital_energy: true
+    angular_momentum: true
+    constraints: true
+
+  losses:
+    transition_weight: 1.0     # matches "observation_weight" but renamed for version 2
+    physics_weight: 10.0
+    residual_weight: 5.0
+    constraint_weight: 1.0
+
+  constraints:
+    minimum_radius_km: 6378.137
+    maximum_velocity_kms: 12.0
+    enforce_energy: true
+    enforce_angular_momentum: true
+
+
+# ---------------------------------------------------------------------------
+# Phase 9 — PI-STN model training settings
+# ---------------------------------------------------------------------------
+pistn:
+  network:
+    input_dim: 8
+    output_dim: 9
+    hidden_layers:
+      - 256
+      - 256
+      - 256
+      - 256
+      - 256
+      - 256
+    activation: "silu"
+    residual_connections: true
+    layer_norm: true
+    dropout: 0.0
+
+  optimizer:
+    name: "adamw"
+    lr: 0.001
+    weight_decay: 1e-5
+
+  scheduler:
+    name: "cosine"
+
+  training:
+    batch_size: 512
+    epochs: 500
+    early_stopping:
+      enabled: true
+      patience: 20
+      min_delta: 1e-6
+      restore_best_weights: true
+    gradient_clip: 1.0
+
+  loss_balancing:
+    mode: "auto"
+    normalize_losses: true
+    manual_weights:
+      transition: 1.0
+      physics: 5.0
+      residual: 2.0
+      constraint: 1e-9
+      energy: 1.0
+      angular_momentum: 1.0
+      orbital: 0.5
+
+  losses:
+    transition_weight: 1.0
+    physics_weight: 5.0
+    residual_weight: 2.0
+    constraint_weight: 1.0
+    energy_weight: 1.0
+    angular_momentum_weight: 1.0
+    orbital_weight: 0.5
+
+  orbital_loss:
+    semi_major_axis: 1.0
+    eccentricity: 1.0
+    inclination: 1.0
+
+  scheduled_sampling:
+    enabled: true
+    decay_type: "linear" # options: linear | exponential
+    initial_probability: 1.0
+    minimum_probability: 0.05
+    decay_epochs: 100
+
+  # ---------------------------------------------------------------------------
+  # Multi-Step Rollout Training (Phase 9 Extension)
+  # ---------------------------------------------------------------------------
+  rollout_training:
+    enabled: true
+    curriculum: true          # If false, always use the last schedule entry's steps
+
+    # Curriculum rollout schedule:
+    # At each training epoch the scheduler picks K based on the epoch range.
+    # Transition Loss is applied ONLY at step k=1 (ground-truth ΔState exists).
+    # Physics + Residual + Constraint Losses are applied for ALL K steps.
+    schedule:
+      - epochs: [1, 20]
+        rollout_steps: 10
+
+      - epochs: [21, 40]
+        rollout_steps: 20
+
+      - epochs: [41, 70]
+        rollout_steps: 30
+
+      - epochs: [71, 9999]
+        rollout_steps: 40
+
+# ---------------------------------------------------------------------------
+# Phase 10 — PI-STN model evaluation settings
+# ---------------------------------------------------------------------------
+evaluation:
+  dataset:
+    test_csv: "test.csv"
+  checkpoint:
+    model: "best_model.pt"
+  prediction:
+    batch_size: 1024
+  orbital_elements:
+    compute: true
+  plots:
+    dpi: 200
+    dark_theme: true
+  save_predictions: true
+  generate_report: true
+
+
+
+
+
+
+
+

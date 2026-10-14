@@ -1,0 +1,39 @@
+{
+  "phase": "Phase 3 \u2014 Synthetic Perturbation Simulation",
+  "satellite": "INSAT-3D",
+  "models_enabled": {
+    "solar_radiation_pressure": true,
+    "maneuver": true,
+    "random": true,
+    "constant_bias": true
+  },
+  "simulation_duration_days": 7,
+  "n_samples": 10081,
+  "step_seconds": 60.0,
+  "residual_acceleration": {
+    "max_km_s2": 1.0813643146597164e-08,
+    "mean_km_s2": 8.485167494602045e-10,
+    "rms_km_s2": 1.0127275175039999e-09,
+    "min_km_s2": 3.479081178063969e-11
+  },
+  "position_deviation": {
+    "max_km": 46.15391454289419,
+    "mean_km": 15.051151280283486,
+    "rms_km": 20.456043929858705
+  },
+  "velocity_deviation": {
+    "max_km_s": 0.00015189272767476492,
+    "mean_km_s": 7.637059630485258e-05,
+    "rms_km_s": 8.920598686585967e-05
+  },
+  "validation": {
+    "max_position_deviation_km": 46.15391454289419,
+    "mean_position_deviation_km": 15.051151280283486,
+    "max_velocity_deviation_kms": 0.00015189272767476492,
+    "mean_velocity_deviation_kms": 7.637059630485258e-05,
+    "n_rows": 10081,
+    "max_perturbation_magnitude_km_s2": 1.0813643146597164e-08,
+    "mean_perturbation_magnitude_km_s2": 8.485167494602045e-10,
+    "rms_perturbation_magnitude_km_s2": 1.0127275175039999e-09
+  }
+}

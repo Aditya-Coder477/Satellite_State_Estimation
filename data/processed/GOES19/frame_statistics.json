@@ -1,0 +1,32 @@
+{
+  "TEME": {
+    "position_min_km": 42121.04633102606,
+    "position_max_km": 42202.67195976391,
+    "position_mean_km": 42163.61458087288,
+    "position_std_km": 15.05238180256912,
+    "velocity_min_kms": 3.074555706404532,
+    "velocity_max_kms": 3.0748634587653374,
+    "velocity_mean_kms": 3.0747012437986894,
+    "velocity_std_kms": 9.654643942915782e-05
+  },
+  "GCRS": {
+    "position_min_km": 42121.04633102606,
+    "position_max_km": 42202.67195976392,
+    "position_mean_km": 42163.61458087288,
+    "position_std_km": 15.052381802569078,
+    "velocity_min_kms": 3.074555409143696,
+    "velocity_max_kms": 3.074863159562695,
+    "velocity_mean_kms": 3.074700944935384,
+    "velocity_std_kms": 9.654652350978281e-05
+  },
+  "ITRS": {
+    "position_min_km": 42121.04633102606,
+    "position_max_km": 42202.671959763924,
+    "position_mean_km": 42163.61458087288,
+    "position_std_km": 15.052381802569144,
+    "velocity_min_kms": 0.00025889972361282113,
+    "velocity_max_kms": 0.003653656714550526,
+    "velocity_mean_kms": 0.00157680186794588,
+    "velocity_std_kms": 0.0008834381804051781
+  }
+}

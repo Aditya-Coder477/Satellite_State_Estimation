@@ -1,0 +1,15 @@
+{
+  "input_file": "truth_states_disturbed.csv",
+  "output_file": "truth_states_transformed.csv",
+  "preserve_residual_acceleration": true,
+  "frames": {
+    "input": "TEME",
+    "intermediate": "GCRS",
+    "output": "ITRS"
+  },
+  "validation": {
+    "preserve_time": true,
+    "preserve_sample_count": true,
+    "preserve_residual_columns": true
+  }
+}

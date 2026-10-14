@@ -1,0 +1,19 @@
+{
+    "RMSE Position": 61.69721603393555,
+    "RMSE Velocity": 0.0016832334222272038,
+    "MAE Position": 40.26988220214844,
+    "MAE Velocity": 0.0011227461509406567,
+    "R\u00b2 Position": 0.6636048555374146,
+    "R\u00b2 Velocity": 0.952912449836731,
+    "Mean Position Error": 97.90995788574219,
+    "Mean Velocity Error": 0.0024500784929841757,
+    "Mean Physics Residual": 5.535484319807438e-07,
+    "Mean Trajectory Error": 97.90995788574219,
+    "Mean Orbit Drift": 35805.61242508401,
+    "Mean \u0394a": 18318.789416899504,
+    "Mean \u0394e": 0.8039243028661287,
+    "Mean \u0394i": 103.87644529523845,
+    "Mean \u0394RAAN": 55.203455331064305,
+    "Mean \u0394\u03c9": 131.4965194601658,
+    "Mean \u0394\u03bd": 107.34855528634623
+}

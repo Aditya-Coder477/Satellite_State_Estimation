@@ -1,0 +1,30 @@
+{
+  "input_states": "truth_states_transformed.csv",
+  "input_observations": "noisy_observations.csv",
+  "output_dir": "dataset",
+  "transition": {
+    "enabled": true,
+    "delta_time_seconds": 60
+  },
+  "split": {
+    "train": 0.7,
+    "validation": 0.15,
+    "test": 0.15,
+    "chronological": true
+  },
+  "normalization": {
+    "method": "standard"
+  },
+  "feature_engineering": {
+    "radius": true,
+    "velocity_magnitude": true,
+    "orbital_energy": true,
+    "angular_momentum": true
+  },
+  "collocation": {
+    "enabled": true,
+    "sampling": "uniform",
+    "number_of_points": 10000
+  },
+  "raw_dataset": true
+}

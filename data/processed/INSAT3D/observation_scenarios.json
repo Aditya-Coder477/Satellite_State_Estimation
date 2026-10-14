@@ -1,0 +1,8 @@
+{
+  "Scenario A (Ideal)": "Zero-noise observations on a uniform 60s cadence.",
+  "Scenario B (Low Noise)": "Gaussian sensor noise with sigma = 0.005 degrees.",
+  "Scenario C (High Noise)": "Gaussian sensor noise with sigma = 0.020 degrees.",
+  "Scenario D (Missing Obs)": "Gaussian sensor noise (0.005 deg) with 20% random dropouts.",
+  "Scenario E (Variable Sampling)": "Gaussian sensor noise (0.005 deg) with non-uniform variable sampling rate (~33% density).",
+  "Scenario F (Station Outage)": "Gaussian sensor noise (0.005 deg) with station 1 offline during Day 3-4."
+}

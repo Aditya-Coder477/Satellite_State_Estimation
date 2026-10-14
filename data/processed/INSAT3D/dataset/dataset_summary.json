@@ -1,0 +1,15 @@
+{
+  "phase": "Phase 7 \u2014 State Transition Dataset Engineering",
+  "satellite": "INSAT3D",
+  "total_samples": 10080,
+  "training_samples": 7056,
+  "validation_samples": 1512,
+  "test_samples": 1512,
+  "number_of_input_features": 12,
+  "number_of_target_features": 9,
+  "time_span_hours": 167.98333333333332,
+  "sampling_interval_seconds": 60.0,
+  "transition_interval_seconds": 60.0,
+  "normalization_method": "standard",
+  "status": "SUCCESS"
+}

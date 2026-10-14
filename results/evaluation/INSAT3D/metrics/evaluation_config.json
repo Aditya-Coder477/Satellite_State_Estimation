@@ -1,0 +1,40 @@
+{
+    "satellite": "INSAT3D",
+    "random_seed": 42,
+    "evaluation_settings": {
+        "dataset": {
+            "test_csv": "test.csv"
+        },
+        "checkpoint": {
+            "model": "best_model.pt"
+        },
+        "prediction": {
+            "batch_size": 1024
+        },
+        "orbital_elements": {
+            "compute": true
+        },
+        "plots": {
+            "dpi": 200,
+            "dark_theme": true
+        },
+        "save_predictions": true,
+        "generate_report": true
+    },
+    "model_architecture": {
+        "input_dim": 8,
+        "output_dim": 9,
+        "hidden_layers": [
+            256,
+            256,
+            256,
+            256,
+            256,
+            256
+        ],
+        "activation": "silu",
+        "residual_connections": true,
+        "layer_norm": true,
+        "dropout": 0.0
+    }
+}

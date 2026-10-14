@@ -1,0 +1,82 @@
+{
+  "Cape Canaveral": {
+    "Station ID": 1,
+    "Coordinates": {
+      "Latitude": 28.3922,
+      "Longitude": -80.6077,
+      "Height": 3.0
+    },
+    "Visible Samples": 10081,
+    "Invisible Samples": 0,
+    "Maximum Elevation": 56.377044261160854,
+    "Average Elevation": 56.351060497963005,
+    "Maximum Range": 36742.27317707531,
+    "Minimum Range": 36657.8179757285,
+    "Average Range": 36701.52159041952,
+    "Average Visibility Percentage": 100.0
+  },
+  "Houston": {
+    "Station ID": 2,
+    "Coordinates": {
+      "Latitude": 29.5502,
+      "Longitude": -95.097,
+      "Height": 13.0
+    },
+    "Visible Samples": 10081,
+    "Invisible Samples": 0,
+    "Maximum Elevation": 49.26904653475102,
+    "Average Elevation": 49.23438274139627,
+    "Maximum Range": 37162.68383467115,
+    "Minimum Range": 37078.3087129013,
+    "Average Range": 37122.42604214842,
+    "Average Visibility Percentage": 100.0
+  },
+  "San Juan": {
+    "Station ID": 3,
+    "Coordinates": {
+      "Latitude": 18.4655,
+      "Longitude": -66.1057,
+      "Height": 9.0
+    },
+    "Visible Samples": 10081,
+    "Invisible Samples": 0,
+    "Maximum Elevation": 65.99312607458134,
+    "Average Elevation": 65.96288549930712,
+    "Maximum Range": 36297.20575141842,
+    "Minimum Range": 36213.47065944151,
+    "Average Range": 36256.44377071459,
+    "Average Visibility Percentage": 100.0
+  },
+  "Santiago": {
+    "Station ID": 4,
+    "Coordinates": {
+      "Latitude": -33.4489,
+      "Longitude": -70.6693,
+      "Height": 570.0
+    },
+    "Visible Samples": 10081,
+    "Invisible Samples": 0,
+    "Maximum Elevation": 50.86893180441499,
+    "Average Elevation": 50.827900855103444,
+    "Maximum Range": 37056.83980994353,
+    "Minimum Range": 36979.17677122667,
+    "Average Range": 37020.13545875194,
+    "Average Visibility Percentage": 100.0
+  },
+  "Brasilia": {
+    "Station ID": 5,
+    "Coordinates": {
+      "Latitude": -15.7939,
+      "Longitude": -47.8828,
+      "Height": 1172.0
+    },
+    "Visible Samples": 10081,
+    "Invisible Samples": 0,
+    "Maximum Elevation": 53.6480641192974,
+    "Average Elevation": 53.60754024733801,
+    "Maximum Range": 36895.828361760694,
+    "Minimum Range": 36815.85840888055,
+    "Average Range": 36856.86948017296,
+    "Average Visibility Percentage": 100.0
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "simulation_duration_days": 7,
+
+  "sampling_interval_seconds": 60,
+
+  "expected_samples": 10081,
+
+  "coordinate_frame": "TEME",
+
+  "ground_station_network": "INSAT3D_Observation_Network",
+
+  "minimum_elevation_deg": 10,
+
+  "observation_noise": {
+    "enabled": true,
+
+    "ra_std_deg": 0.005,
+
+    "dec_std_deg": 0.005,
+
+    "seed": 42
+  },
+
+  "visibility": {
+    "compute_ra_dec": true,
+    "compute_range": true,
+    "compute_range_rate": true
+  }
+}

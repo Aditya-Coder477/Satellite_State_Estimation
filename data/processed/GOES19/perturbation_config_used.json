@@ -1,0 +1,48 @@
+{
+  "enabled": true,
+  "models": {
+    "solar_radiation_pressure": true,
+    "maneuver": true,
+    "random": true,
+    "constant_bias": true
+  },
+  "srp": {
+    "pressure_n_pa": 4.56e-06,
+    "reflectivity": 1.3,
+    "area_mass_ratio": 0.02
+  },
+  "maneuver": {
+    "enabled": true,
+    "start_time_seconds": 259200,
+    "duration_seconds": 1200,
+    "magnitude_km_s2": 1e-08,
+    "direction": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "random": {
+    "mean": 0.0,
+    "std": 5e-10,
+    "seed": 42
+  },
+  "bias": {
+    "ax": 2e-10,
+    "ay": 1e-10,
+    "az": 0.0
+  },
+  "validation": {
+    "max_position_deviation_km": 5.0,
+    "max_velocity_deviation_kms": 0.01,
+    "max_acceleration_km_s2": 1e-05
+  },
+  "output": {
+    "disturbed_csv": "truth_states_disturbed.csv",
+    "residual_csv": "residual_acceleration.csv",
+    "disturbance_log_csv": "disturbance_log.csv",
+    "summary_json": "perturbation_summary.json",
+    "statistics_json": "disturbance_statistics.json",
+    "config_used_json": "perturbation_config_used.json"
+  }
+}

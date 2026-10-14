@@ -1,0 +1,30 @@
+{
+    "gravity_model": "two_body",
+    "integrator": {
+        "type": "velocity_verlet",
+        "supported": [
+            "euler",
+            "rk4",
+            "leapfrog",
+            "velocity_verlet"
+        ]
+    },
+    "compute": {
+        "residual_dynamics": true,
+        "orbital_energy": true,
+        "angular_momentum": true,
+        "constraints": true
+    },
+    "losses": {
+        "transition_weight": 1.0,
+        "physics_weight": 10.0,
+        "residual_weight": 5.0,
+        "constraint_weight": 1.0
+    },
+    "constraints": {
+        "minimum_radius_km": 6378.137,
+        "maximum_velocity_kms": 12.0,
+        "enforce_energy": true,
+        "enforce_angular_momentum": true
+    }
+}

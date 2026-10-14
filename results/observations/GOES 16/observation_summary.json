@@ -1,0 +1,32 @@
+{
+  "satellite": "GOES16",
+  "simulation_id": "7410bfba",
+  "scenario": "weather_outage",
+  "scenario_description": "Gaussian noise + random cloud/weather outage windows",
+  "generated_at_utc": "2026-06-26T18:51:00.777074+00:00",
+  "stations": 5,
+  "station_names": [
+    "Cape Canaveral",
+    "Houston",
+    "San Juan",
+    "Santiago",
+    "Brasilia"
+  ],
+  "total_observations": 50405,
+  "visible_observations": 11512,
+  "hidden_observations": 38893,
+  "mean_elevation_deg": 40.713631245808266,
+  "max_elevation_deg": 54.419868555362775,
+  "min_elevation_deg": 23.711096029730687,
+  "mean_range_km": 37789.585970856046,
+  "noise_model": "gaussian",
+  "noise_enabled": true,
+  "noise_std_ra_deg": 0.005,
+  "noise_std_dec_deg": 0.005,
+  "noise_seed": 42,
+  "missing_fraction": 0.0,
+  "outage_enabled": true,
+  "validation_passed": true,
+  "validation_errors": [],
+  "validation_warnings": []
+}

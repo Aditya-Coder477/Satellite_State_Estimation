@@ -1,0 +1,30 @@
+{
+  "mission_name": "INSAT-3D PINN State Transition",
+
+  "satellite": "INSAT-3D",
+
+  "objective": "Physics-informed state transition learning for geostationary satellite orbit prediction",
+
+  "prediction_target": "DeltaState",
+
+  "state_vector": [
+    "x",
+    "y",
+    "z",
+    "vx",
+    "vy",
+    "vz"
+  ],
+
+  "future_prediction_horizon_days": 2,
+
+  "residual_acceleration": true,
+
+  "physics_model": "TwoBodyGravity",
+
+  "coordinate_frames": [
+    "TEME",
+    "GCRS",
+    "ITRS"
+  ]
+}

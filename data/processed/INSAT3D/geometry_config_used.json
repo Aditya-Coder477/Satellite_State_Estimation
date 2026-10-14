@@ -1,0 +1,18 @@
+{
+  "input_file": "truth_states_transformed.csv",
+  "station_file": "ground_stations.json",
+  "output_file": "ground_station_geometry.csv",
+  "minimum_elevation_deg": 10.0,
+  "compute": {
+    "range": true,
+    "range_rate": true,
+    "visibility": true,
+    "azimuth": true,
+    "elevation": true
+  },
+  "validation": {
+    "enforce_unique_station_ids": true,
+    "validate_geometry": true,
+    "validate_visibility": true
+  }
+}

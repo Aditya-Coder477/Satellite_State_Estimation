@@ -1,0 +1,46 @@
+{
+  "input_geometry": "ground_station_geometry.csv",
+  "input_states": "truth_states_transformed.csv",
+  "output_clean": "observations.csv",
+  "output_noisy": "noisy_observations.csv",
+  "sensor": {
+    "type": "optical",
+    "generate_ra_dec": true
+  },
+  "noise": {
+    "gaussian": {
+      "enabled": true,
+      "ra_std_deg": 0.005,
+      "dec_std_deg": 0.005
+    },
+    "bias": {
+      "enabled": false,
+      "ra_bias_deg": 0.0,
+      "dec_bias_deg": 0.0
+    },
+    "random_walk": {
+      "enabled": false,
+      "std_deg": 0.0001
+    }
+  },
+  "sampling": {
+    "mode": "uniform",
+    "interval_seconds": 60,
+    "missing_fraction": 0.1,
+    "seed": 42
+  },
+  "scenarios": {
+    "ideal": true,
+    "low_noise": true,
+    "high_noise": true,
+    "missing_observations": true,
+    "variable_sampling": true,
+    "station_outage": true,
+    "outage_station_id": 1,
+    "outage_start_s": 259200,
+    "outage_end_s": 345600
+  },
+  "quality": {
+    "compute_score": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "Input frame": "TEME",
+  "Output frames": [
+    "GCRS",
+    "ITRS"
+  ],
+  "Number of samples": 10081,
+  "Transformation success": true,
+  "Maximum coordinate difference": 84363.69402036969,
+  "Average coordinate difference": 53693.59368554127,
+  "Execution time": 10.444417099934071
+}

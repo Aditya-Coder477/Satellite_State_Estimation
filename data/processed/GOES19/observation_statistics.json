@@ -1,0 +1,26 @@
+{
+  "Total observations": 256947,
+  "Visible observations": 302430,
+  "Missing observations": 35365,
+  "Average noise": 0.010822386343381002,
+  "Maximum noise": 0.09314132307137712,
+  "Observation density": {
+    "total_observations_per_day": 36706.71428571428,
+    "total_observation_count": 256947
+  },
+  "Per-station observation counts": {
+    "Brasilia": 51711,
+    "Cape Canaveral": 50280,
+    "Houston": 51669,
+    "San Juan": 51684,
+    "Santiago": 51603
+  },
+  "Per-scenario observation counts": {
+    "Scenario A (Ideal)": 50405,
+    "Scenario B (Low Noise)": 50405,
+    "Scenario C (High Noise)": 50405,
+    "Scenario D (Missing Obs)": 40262,
+    "Scenario E (Variable Sampling)": 16506,
+    "Scenario F (Station Outage)": 48964
+  }
+}

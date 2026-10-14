@@ -1,0 +1,16 @@
+# =============================================================================
+# Satellite PINN State Estimation — Python dependencies
+# Step 2: SGP4 Orbit Propagation
+# =============================================================================
+
+# Core scientific stack
+numpy>=1.24
+pandas>=2.0
+matplotlib>=3.7
+astropy>=5.3
+
+# SGP4/SDP4 propagation (Brandon Rhodes implementation — IERS-compliant)
+sgp4>=2.22
+
+# YAML configuration
+pyyaml>=6.0

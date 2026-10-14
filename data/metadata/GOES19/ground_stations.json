@@ -1,0 +1,70 @@
+{
+  "network_name": "GOES16_Observation_Network",
+  "description": "Ground station network optimized for observing GOES-16 (75.2°W GEO satellite)",
+  "coordinate_frame": "WGS84",
+  "minimum_elevation_deg": 10.0,
+
+  "stations": [
+
+    {
+      "id": 1,
+      "name": "Cape Canaveral",
+      "country": "USA",
+      "state": "Florida",
+      "latitude_deg": 28.3922,
+      "longitude_deg": -80.6077,
+      "height_m": 3,
+      "timezone": "America/New_York",
+      "station_code": "CCAFS"
+    },
+
+    {
+      "id": 2,
+      "name": "Houston",
+      "country": "USA",
+      "state": "Texas",
+      "latitude_deg": 29.5502,
+      "longitude_deg": -95.0970,
+      "height_m": 13,
+      "timezone": "America/Chicago",
+      "station_code": "HOU"
+    },
+
+    {
+      "id": 3,
+      "name": "San Juan",
+      "country": "Puerto Rico",
+      "state": "San Juan",
+      "latitude_deg": 18.4655,
+      "longitude_deg": -66.1057,
+      "height_m": 9,
+      "timezone": "America/Puerto_Rico",
+      "station_code": "SJU"
+    },
+
+    {
+      "id": 4,
+      "name": "Santiago",
+      "country": "Chile",
+      "state": "Santiago Metropolitan",
+      "latitude_deg": -33.4489,
+      "longitude_deg": -70.6693,
+      "height_m": 570,
+      "timezone": "America/Santiago",
+      "station_code": "SCL"
+    },
+
+    {
+      "id": 5,
+      "name": "Brasilia",
+      "country": "Brazil",
+      "state": "Federal District",
+      "latitude_deg": -15.7939,
+      "longitude_deg": -47.8828,
+      "height_m": 1172,
+      "timezone": "America/Sao_Paulo",
+      "station_code": "BSB"
+    }
+
+  ]
+}

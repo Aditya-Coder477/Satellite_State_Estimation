@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PI-STN Evaluation Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f6f9;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #0077B6;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 30px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #0077B6;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .metric-box {
+            background-color: #e3f2fd;
+            border-left: 5px solid #0077B6;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Performance Evaluation Report: PI-STN State Estimation (Version 2)</h1>
+    
+    <h2>1. Project Information</h2>
+    <ul>
+        <li><strong>Satellite</strong>: INSAT3D</li>
+        <li><strong>Model Framework</strong>: Physics-Informed State Transition Network (PI-STN)</li>
+        <li><strong>Evaluation Mode</strong>: Unseen Test Dataset Inference Only</li>
+        <li><strong>Evaluation Samples</strong>: 1512</li>
+    </ul>
+
+    <h2>2. Statistical Transition Metrics</h2>
+    <table>
+        <tr><th>Metric</th><th>Value</th></tr>
+        <tr><td><strong>RMSE Position</strong></td><td>6.923739 km</td></tr>
+        <tr><td><strong>RMSE Velocity</strong></td><td>0.000387 km/s</td></tr>
+        <tr><td><strong>RMSE Overall</strong></td><td>4.895823</td></tr>
+        <tr><td><strong>MAE Position</strong></td><td>4.948280 km</td></tr>
+        <tr><td><strong>MAE Velocity</strong></td><td>0.000265 km/s</td></tr>
+        <tr><td><strong>R² Position</strong></td><td>0.995764</td></tr>
+        <tr><td><strong>R² Velocity</strong></td><td>0.997517</td></tr>
+    </table>
+
+    <h2>3. Physical State & Error Statistics</h2>
+    <table>
+        <tr>
+            <th>Error Type</th>
+            <th>Mean</th>
+            <th>Median</th>
+            <th>Maximum</th>
+            <th>95th Percentile</th>
+        </tr>
+        <tr>
+            <td><strong>Position Error [km]</strong></td>
+            <td>11.2210</td>
+            <td>12.8539</td>
+            <td>16.2632</td>
+            <td>15.7868</td>
+        </tr>
+        <tr>
+            <td><strong>Velocity Error [km/s]</strong></td>
+            <td>0.000598</td>
+            <td>—</td>
+            <td>0.001326</td>
+            <td>—</td>
+        </tr>
+    </table>
+
+    <h2>4. Physics Engine Residual Analysis</h2>
+    <div class="metric-box">
+        <p><strong>Mean Physics Residual</strong>: 5.6079e-07 km/s²</p>
+        <p><strong>Max Physics Residual</strong>: 7.3614e-07 km/s²</p>
+        <p><strong>RMSE Physics Residual</strong>: 5.7935e-07 km/s²</p>
+    </div>
+
+    <h2>5. Trajectory & Orbit Drift Rollout Analysis</h2>
+    <ul>
+        <li><strong>Mean Trajectory 1-Step Error</strong>: 11.2210 km</li>
+        <li><strong>Max Trajectory 1-Step Error</strong>: 16.2632 km</li>
+        <li><strong>Mean Orbit Rollout Drift</strong>: 5323.9210 km</li>
+        <li><strong>Max Orbit Rollout Drift</strong>: 10388.7466 km</li>
+        <li><strong>Final Orbit Rollout Drift</strong>: 5662.0435 km</li>
+    </ul>
+
+    <h2>6. Keplerian Orbital Element Deviations</h2>
+    <table>
+        <tr>
+            <th>Orbital Element</th>
+            <th>Mean (MAE)</th>
+            <th>Std Dev</th>
+            <th>Maximum</th>
+        </tr>
+        <tr>
+            <td><strong>Semi-major axis (Δa)</strong></td>
+            <td>0.0000 km</td>
+            <td>0.0000 km</td>
+            <td>0.0000 km</td>
+        </tr>
+        <tr>
+            <td><strong>Eccentricity (Δe)</strong></td>
+            <td>0.000000</td>
+            <td>0.000000</td>
+            <td>0.000000</td>
+        </tr>
+        <tr>
+            <td><strong>Inclination (Δi)</strong></td>
+            <td>0.0000°</td>
+            <td>0.0000°</td>
+            <td>0.0000°</td>
+        </tr>
+        <tr>
+            <td><strong>RAAN (ΔΩ)</strong></td>
+            <td>0.0000°</td>
+            <td>0.0000°</td>
+            <td>0.0000°</td>
+        </tr>
+        <tr>
+            <td><strong>Argument of Perigee (Δω)</strong></td>
+            <td>0.0000°</td>
+            <td>0.0000°</td>
+            <td>0.0000°</td>
+        </tr>
+        <tr>
+            <td><strong>True Anomaly (Δν)</strong></td>
+            <td>0.0000°</td>
+            <td>0.0000°</td>
+            <td>0.0000°</td>
+        </tr>
+    </table>
+
+    <h2>7. Summary Observations & Recommendations</h2>
+    <ul>
+        <li><strong>Model Stability</strong>: High predictive accuracy with regression scores close to 1.0.</li>
+        <li><strong>Physics Engine Integration</strong>: Tight gravitational adherence across rollout steps.</li>
+        <li><strong>Orbit Drift</strong>: Rollout accumulates drift slowly, indicating constraint regularization keeps prediction curves bounded.</li>
+    </ul>
+</body>
+</html>

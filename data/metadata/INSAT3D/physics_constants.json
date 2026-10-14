@@ -1,0 +1,21 @@
+{
+  "earth": {
+    "gravitational_parameter_km3_s2": 398600.4418,
+    "equatorial_radius_km": 6378.137,
+    "flattening": 0.0033528106647474805,
+    "rotation_rate_rad_s": 7.292115e-5
+  },
+
+  "gravity_model": {
+    "J2": 0.00108262668,
+    "J3": -2.532153e-6,
+    "J4": -1.610988e-6
+  },
+
+  "units": {
+    "distance": "km",
+    "velocity": "km/s",
+    "time": "s",
+    "angle": "deg"
+  }
+}
